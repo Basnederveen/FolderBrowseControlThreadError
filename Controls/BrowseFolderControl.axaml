@@ -1,0 +1,42 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:FolderBrowseControlThreadError.Controls">
+
+	<Design.PreviewWith>
+		<StackPanel>
+			<Panel Width="250">
+				<controls:BrowseFolderControl Header="Test"/>
+			</Panel>
+			<Panel Width="400">
+				<controls:BrowseFolderControl Header="Test"/>
+			</Panel>
+		</StackPanel>
+	</Design.PreviewWith>
+
+	<Style Selector="controls|BrowseFolderControl">
+
+		<!-- Set Defaults -->
+
+
+		<!--Every TemplatedControl needs to have a ControlTemplate applied. In this setter we define it.-->
+		<Setter Property="Template">
+			<ControlTemplate>
+
+				<!-- The content -->
+				<StackPanel Spacing="5">
+					<TextBlock Text="{TemplateBinding Header}"></TextBlock>
+					<Grid ColumnDefinitions="*,80">
+						<TextBox Grid.Column="0"
+								 Margin="0,0,5,0"
+								 Watermark="C:\"
+								 Text="{TemplateBinding Path}"></TextBox>
+						<Button Grid.Column="1"
+								Command="{TemplateBinding OpenFolderCommand}"
+								HorizontalContentAlignment="Center" HorizontalAlignment="Stretch">Browse...</Button>
+					</Grid>
+				</StackPanel>
+
+			</ControlTemplate>
+		</Setter>
+	</Style>
+</Styles>

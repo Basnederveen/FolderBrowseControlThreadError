@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:FolderBrowseControlThreadError.ViewModels"
+             xmlns:controls="using:FolderBrowseControlThreadError.Controls"
+             x:Class="FolderBrowseControlThreadError.Views.MainView"
+             x:DataType="vm:MainViewModel">
+
+
+	<StackPanel HorizontalAlignment="Stretch" Margin="5" Spacing="10" >		
+		<controls:BrowseFolderControl Header="Select the BOM" />
+	</StackPanel>
+</UserControl>

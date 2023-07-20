@@ -1,0 +1,17 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="FolderBrowseControlThreadError.App"
+             xmlns:local="using:FolderBrowseControlThreadError"
+             xmlns:sty="using:FluentAvalonia.Styling"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <sty:FluentAvaloniaTheme />
+        <StyleInclude Source="/Controls/BrowseFolderControl.axaml" />
+    </Application.Styles>
+</Application>
