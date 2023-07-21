@@ -29,9 +29,9 @@
 						<TextBox Grid.Column="0"
 								 Margin="0,0,5,0"
 								 Watermark="C:\"
-								 Text="{TemplateBinding Path}"></TextBox>
+								 Text="{TemplateBinding Path, Mode=TwoWay}"></TextBox>
 						<Button Grid.Column="1"
-								Command="{TemplateBinding OpenFolderCommand}"
+								x:Name="PART_Button"
 								HorizontalContentAlignment="Center" HorizontalAlignment="Stretch">Browse...</Button>
 					</Grid>
 				</StackPanel>
