@@ -4,11 +4,18 @@ using Avalonia.Threading;
 using ReactiveUI;
 using System;
 using System.Windows.Input;
+using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
+using Avalonia.Interactivity;
 
 namespace FolderBrowseControlThreadError.Controls
 {
+    [TemplatePart(nameof(PART_Button), typeof(Button))]
     public class BrowseFolderControl : TemplatedControl
     {
+        // Keep a reference to the Button
+        private Button? PART_Button; 
+        
         public static readonly StyledProperty<string> HeaderProperty =
             AvaloniaProperty.Register<BrowseFolderControl, string>(
                 nameof(Header), "Select a folder");
@@ -29,26 +36,30 @@ namespace FolderBrowseControlThreadError.Controls
             set { SetValue(PathProperty, value); }
         }
 
-        public BrowseFolderControl()
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            OpenFolderCommand = ReactiveCommand.Create(SetFolderUIThread);
+            base.OnApplyTemplate(e);
+
+            // unsubscribe if needed
+            if(PART_Button is not null) 
+                PART_Button.Click -= PART_ButtonOnClick;
+
+            PART_Button = e.NameScope.Find<Button>(nameof(PART_Button));
+            
+            // Listen to Button.Click
+            if(PART_Button is not null) 
+                PART_Button.Click += PART_ButtonOnClick;
         }
 
-        public static DirectProperty<BrowseFolderControl, ICommand> OpenFolderCommandProperty =
-            AvaloniaProperty.RegisterDirect<BrowseFolderControl, ICommand>(
-                nameof(OpenFolderCommand),
-                x => x.OpenFolderCommand);
-
-        public ICommand OpenFolderCommand { get; }
-
-        private void SetFolderUIThread()
+        private void PART_ButtonOnClick(object? sender, RoutedEventArgs e)
         {
-            Dispatcher.UIThread.InvokeAsync(SetFolder);
+            SetFolder();
         }
 
         private void SetFolder()
         {
             Console.WriteLine("");
+            Path = "Success";
         }
     }
 }
